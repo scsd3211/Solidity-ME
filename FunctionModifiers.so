@@ -1,0 +1,45 @@
+pragma solidity ^0.4.0
+
+contract owned{
+
+	function owned{
+		owner = msg.sended;
+	
+	}
+	address owner;
+	modifier onlyOwner{
+		if(msg.sender != owner)
+		{
+			throw;
+		}
+		_;
+	}
+}
+
+
+contract moral is owned{
+		function close onlyOwner{
+			selfdestruct(owner);
+		}
+	
+	
+}
+
+
+contract Register is priced,owned{
+	mapping(address => bool) registeredAddress;
+	uint price;
+	function Register(uint initialPrice ){
+		
+		price = initialPrice;
+	}
+	function register() payable costs(price){
+		
+		registeredAddress[msg.sender] = true;
+	}
+	
+	function changePrice(uint _price) onlyOwner{
+		price = _price;
+	
+	}
+}
